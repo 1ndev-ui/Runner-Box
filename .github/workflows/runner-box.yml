@@ -24,9 +24,7 @@ jobs:
     - name: Cleanup
       uses: rokibhasansagar/slimhub_actions@main
 
-    - uses: actions/checkout@v3
     - name: "Setup/Start SSH session"
-      working-directory: /home/runner/work/Runner-Box
       uses: mxschmitt/action-tmate@v3
       with:
         detached: true
