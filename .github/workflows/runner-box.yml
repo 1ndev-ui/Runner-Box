@@ -29,12 +29,7 @@ jobs:
       with:
         swap-size-gb: 10
 
-    - name: "Setup/Start SSH Session"
-      uses: lhotari/action-upterm@v1
+    - name: "Setup/Start SSH session"
+      uses: mxschmitt/action-tmate@v3
       with:
-        limit-access-to-actor: true
-
-#    - name: "Setup/Start SSH session"
-#      uses: mxschmitt/action-tmate@v3
-#      with:
-#        detached: true
+        detached: true
