@@ -30,4 +30,17 @@ make -j4 O=/home/runner/work/Runner-Box/Runner-Box/out ARCH=arm64 CROSS_COMPILE=
 
 make -j4 O=/home/runner/work/Runner-Box/Runner-Box/out ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CC=clang LLVM=1 LLVM_IAS=1 LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip CONFIG_DEBUG_SECTION_MISMATCH=y
 
+# Copy compiled Kernel & DTB to compiled dir
 
+cd ..
+
+mkdir compiled
+
+cp out/arch/arm64/boot/Image compiled/
+cp out/arch/arm64/boot/Image.gz compiled/
+cp out/arch/arm64/boot/dts/mediatek/mt6765.dtb compiled/dtb
+cp out/vmlinux compiled/
+
+cd compiled
+
+zip -r 4.19.191_mt6765_dev.zip *
