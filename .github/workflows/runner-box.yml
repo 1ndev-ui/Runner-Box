@@ -7,11 +7,11 @@ on:
 jobs:
   deployssh:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 360
     permissions:
       contents: write
     steps:
-    - name: Check if sender is repository owner
+    - name: "Check if sender is repository owner"
       if: github.event.repository.owner.login == github.event.sender.login
       run: |
         echo "Sender is the repository owner"
@@ -21,10 +21,22 @@ jobs:
         echo "Sender is not the repository owner"
         exit 1
 
-    - name: Cleanup
+    - name: "Cleanup"
       uses: rokibhasansagar/slimhub_actions@main
 
-    - name: "Setup/Start SSH session"
-      uses: mxschmitt/action-tmate@v3
+    - name: "Set Swap Space"
+      uses: pierotofy/set-swap-space@master
       with:
-        detached: true
+        swap-size-gb: 10
+
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+      with:
+        limit-access-to-actor: true
+        limit-access-to-users: 1ndev-ui
+        wait-timeout-minutes: 5
+
+#    - name: "Setup/Start SSH session"
+#      uses: mxschmitt/action-tmate@v3
+#      with:
+#        detached: true
