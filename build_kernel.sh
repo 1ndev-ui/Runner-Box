@@ -16,7 +16,7 @@ git clone --recursive --branch master https://android.googlesource.com/platform/
 
 git clone --recursive --branch 11.0.1 https://github.com/1ndev-ui/android_prebuilts_clang_host_linux-x86_clang-6443078 clang --depth=1
 
-# Add toolchains to PATH
+# Add toolchains to $PATH
 
 export PATH=/home/runner/work/Runner-Box/Runner-Box/4.19.191_mt6765/clang/bin:/home/runner/work/Runner-Box/4.19.191_mt6765/clang:/home/runner/work/Runner-Box/4.19.191_mt6765/gas/bin:/home/runner/work/Runner-Box/4.19.191_mt6765/gas:$PATH
 
@@ -26,11 +26,11 @@ export LD_LIBRARY_PATH=/home/runner/work/Runner-Box/Runner-Box/4.19.191_mt6765/c
 
 make -j4 O=/home/runner/work/Runner-Box/Runner-Box/out ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CC=clang LLVM=1 LLVM_IAS=1 LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip k65v1_64_bsp_defconfig
 
-# Build kernel
+# Build Kernel & output to .log
 
-make -j4 O=/home/runner/work/Runner-Box/Runner-Box/out ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CC=clang LLVM=1 LLVM_IAS=1 LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip CONFIG_DEBUG_SECTION_MISMATCH=y
+make -j4 O=/home/runner/work/Runner-Box/Runner-Box/out ARCH=arm64 CROSS_COMPILE=aarch64-linux-gnu- CLANG_TRIPLE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- CC=clang LLVM=1 LLVM_IAS=1 LD=ld.lld AR=llvm-ar NM=llvm-nm OBJCOPY=llvm-objcopy OBJDUMP=llvm-objdump READELF=llvm-readelf OBJSIZE=llvm-size STRIP=llvm-strip CONFIG_DEBUG_SECTION_MISMATCH=y >> build.log
 
-# Copy compiled Kernel & DTB to compiled dir
+# Archive compiled Kernel & DTB into .zip
 
 cd ..
 
@@ -41,6 +41,6 @@ cp out/arch/arm64/boot/Image.gz compiled/
 cp out/arch/arm64/boot/dts/mediatek/mt6765.dtb compiled/dtb
 cp out/vmlinux compiled/
 
-cd compiled
+zip -r 4.19.191_mt6765_dev.zip compiled/*
 
-zip -r 4.19.191_mt6765_dev.zip *
+rm -r compiled/
