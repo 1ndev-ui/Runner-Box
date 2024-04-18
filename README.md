@@ -1,7 +1,7 @@
-# Runner-Box
-Utilze Github's hosted Runners as a debuggable SSH instance!
+# Runner Box
+Utilze Github's Runners as a debuggable SSH instance!
 
-# How to use:
+## How to use:
 
 1. Fork this repo.
 
