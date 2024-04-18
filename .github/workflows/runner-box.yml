@@ -18,7 +18,7 @@ jobs:
     - name: Not the repository owner
       if: github.event.repository.owner.login != github.event.sender.login
       run: |
-        echo "Sender is not the repository owner"
+        echo "Sender is not the repository owner !"
         exit 1
 
     - name: "Cleanup"
@@ -29,6 +29,7 @@ jobs:
       with:
         swap-size-gb: 10
 
+    - uses: actions/checkout@v3
     - name: "Setup/Start SSH session"
       uses: mxschmitt/action-tmate@v3.18
       with:
