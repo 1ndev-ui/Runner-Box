@@ -39,8 +39,9 @@ mkdir compiled
 cp out/arch/arm64/boot/Image compiled/
 cp out/arch/arm64/boot/Image.gz compiled/
 cp out/arch/arm64/boot/dts/mediatek/mt6765.dtb compiled/dtb
-cp out/vmlinux compiled/
+cp 4.19.191_mt6765/build.log compiled/
 
 zip -r 4.19.191_mt6765_dev.zip compiled/*
 
 rm -r compiled/
+

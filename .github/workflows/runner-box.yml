@@ -41,3 +41,10 @@ jobs:
         chmod +x build_kernel.sh
         ./build_kernel.sh
 
+    - name: "Upload Kernel Archive"
+      uses: actions/upload-artifact@v4
+      with:
+        name: 4.19.191_mt6765_dev_prebuilt_kernel.zip
+        path: /home/runner/work/Runner-Box/Runner-Box/4.19.191_mt6765_dev.zip
+        if-no-files-found: ignore
+        retention-days: 7
