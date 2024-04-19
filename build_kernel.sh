@@ -2,7 +2,7 @@
 
 # Grab prereqs
 
-sudo apt-get update && sudo apt-get install -y build-essential bc curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python2 python3 libarchive-tools device-tree-compiler zsh
+sudo apt-get update && sudo apt-get install -y build-essential bc sed xz-utils flex bison curl git zip ftp gcc-aarch64-linux-gnu gcc-arm-linux-gnueabi libssl-dev lftp zstd wget libfl-dev python2 python3 python-is-python3 libarchive-tools device-tree-compiler zsh llvm lld clang
 
 # Clone Kernel source
 
